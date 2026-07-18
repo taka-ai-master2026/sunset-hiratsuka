@@ -22,6 +22,12 @@
     .backdrop{position:fixed;z-index:100;inset:0;display:none;align-items:flex-end;justify-content:center;padding:16px;background:rgba(41,25,20,.64);backdrop-filter:blur(7px)}.backdrop.open{display:flex}.modal{position:relative;width:100%;max-width:448px;padding:34px 24px 29px;border-radius:29px;background:var(--cream);box-shadow:0 22px 70px rgba(45,21,13,.3)}.modal h2{margin:10px 0 8px;font-family:"Yu Mincho","Hiragino Mincho ProN",serif;font-size:1.78rem;font-weight:500}.modal p:not(.kicker){margin:0 0 21px;color:var(--muted);font-size:.79rem;line-height:1.7}.close{position:absolute;top:14px;right:14px;display:grid;width:37px;height:37px;padding:0;border:1px solid var(--line);border-radius:50%;place-items:center;background:transparent;color:var(--brown);cursor:pointer}.modal .btn{color:var(--white)}
     @media(min-width:680px){body{padding:28px 0}.app{min-height:calc(100vh - 56px);border-radius:34px}header{border-radius:34px 34px 0 0}nav{bottom:28px;border-radius:0 0 34px 34px}.backdrop{align-items:center}}
   </style>
+  <style>
+    .drink-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 8px;padding:0;list-style:none}
+    .drink-list li{display:flex;align-items:center;min-height:58px;padding:13px 14px;border:1px solid rgba(83,45,33,.13);border-radius:15px;background:rgba(255,255,255,.52);color:var(--brown);font-size:.86rem;font-weight:700;letter-spacing:.03em}
+    .drink-list li::before{content:"";width:7px;height:7px;margin-right:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(207,134,100,.13)}
+    .drink-note{margin:14px 0 0!important;text-align:center}
+  </style>
 </head>
 <body>
 <svg class="icons" aria-hidden="true"><defs>
@@ -45,7 +51,7 @@
     </section>
     <section class="block"><div class="heading"><div><p class="kicker">MENU</p><h2>気になる情報をチェック</h2></div><span class="num">01</span></div>
       <div class="grid">
-        <button class="card featured soon" data-title="ドリンクメニュー"><span class="card-top"><span class="round-icon"><svg class="icon"><use href="#i-wine"/></svg></span><span class="meta">DRINK</span></span><strong>ドリンク<br>メニュー</strong><span class="status">近日公開</span><span class="arrow"><svg class="icon"><use href="#i-right"/></svg></span></button>
+        <button class="card featured soon" data-title="ドリンクメニュー" data-modal="drinks"><span class="card-top"><span class="round-icon"><svg class="icon"><use href="#i-wine"/></svg></span><span class="meta">DRINK</span></span><strong>ドリンク<br>メニュー</strong><span class="status">ラインナップを見る</span><span class="arrow"><svg class="icon"><use href="#i-right"/></svg></span></button>
         <button class="card soon" data-title="キャスト紹介"><span class="card-top"><span class="round-icon"><svg class="icon"><use href="#i-users"/></svg></span><span class="meta">CAST</span></span><strong>キャスト<br>紹介</strong><span class="status">近日公開</span><span class="arrow"><svg class="icon"><use href="#i-right"/></svg></span></button>
         <a class="card" href="#info"><span class="card-top"><span class="round-icon"><svg class="icon"><use href="#i-map"/></svg></span><span class="meta">INFO</span></span><strong>店舗<br>情報</strong><span class="status">営業時間・定休日</span><span class="arrow"><svg class="icon"><use href="#i-down"/></svg></span></a>
         <a class="card dark" href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer"><span class="card-top"><span class="round-icon"><svg class="icon"><use href="#i-ig"/></svg></span><span class="meta">INSTAGRAM</span></span><strong>最新情報を<br>見る</strong><span class="status">@sunset_hiratsuka</span><span class="arrow"><svg class="icon"><use href="#i-out"/></svg></span></a>
@@ -59,12 +65,20 @@
     <section class="closing"><p class="kicker">SEE YOU TONIGHT</p><h2>SunSetで、<br>お待ちしています。</h2><p>お問い合わせはInstagramのDMからどうぞ。</p><a href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer">@sunset_hiratsuka<svg class="icon"><use href="#i-out"/></svg></a></section>
     <footer>© SunSet Hiratsuka</footer>
   </div>
-  <nav aria-label="メインナビゲーション"><a href="#top"><svg class="icon"><use href="#i-home"/></svg>ホーム</a><button class="soon" data-title="ドリンクメニュー"><svg class="icon"><use href="#i-wine"/></svg>ドリンク</button><a href="#info"><svg class="icon"><use href="#i-map"/></svg>店舗情報</a><a href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer"><svg class="icon"><use href="#i-ig"/></svg>Instagram</a></nav>
+  <nav aria-label="メインナビゲーション"><a href="#top"><svg class="icon"><use href="#i-home"/></svg>ホーム</a><button class="soon" data-title="ドリンクメニュー" data-modal="drinks"><svg class="icon"><use href="#i-wine"/></svg>ドリンク</button><a href="#info"><svg class="icon"><use href="#i-map"/></svg>店舗情報</a><a href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer"><svg class="icon"><use href="#i-ig"/></svg>Instagram</a></nav>
 </main>
-<div class="backdrop" id="backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close" id="close" aria-label="閉じる"><svg class="icon"><use href="#i-x"/></svg></button><p class="kicker">COMING SOON</p><h2 id="modal-title">近日公開</h2><p>ただいま準備中です。公開まで楽しみにお待ちください。</p><a class="btn btn-primary" href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer">最新情報をInstagramで見る<svg class="icon"><use href="#i-out"/></svg></a></section></div>
+<div class="backdrop" id="backdrop"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="close" id="close" aria-label="閉じる"><svg class="icon"><use href="#i-x"/></svg></button><p class="kicker" id="modal-kicker">COMING SOON</p><h2 id="modal-title">近日公開</h2><div id="modal-content"><p>ただいま準備中です。公開まで楽しみにお待ちください。</p><a class="btn btn-primary" href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer">最新情報をInstagramで見る<svg class="icon"><use href="#i-out"/></svg></a></div></section></div>
 <script>
-  const backdrop=document.getElementById('backdrop'),title=document.getElementById('modal-title');
-  document.querySelectorAll('.soon').forEach(el=>el.addEventListener('click',()=>{title.textContent=el.dataset.title;backdrop.classList.add('open')}));
+  const backdrop=document.getElementById('backdrop'),title=document.getElementById('modal-title'),kicker=document.getElementById('modal-kicker'),content=document.getElementById('modal-content');
+  document.querySelectorAll('.soon').forEach(el=>el.addEventListener('click',()=>{
+    const isDrinks=el.dataset.modal==='drinks';
+    kicker.textContent=isDrinks?'DRINK MENU':'COMING SOON';
+    title.textContent=el.dataset.title;
+    content.innerHTML=isDrinks
+      ?'<ul class="drink-list"><li>金宮</li><li>ハブ酒</li><li>吉四六</li><li>テキーラ</li><li>シャンパン各種</li></ul><p class="drink-note">価格・詳細はスタッフまでお尋ねください。</p>'
+      :'<p>ただいま準備中です。公開まで楽しみにお待ちください。</p><a class="btn btn-primary" href="https://www.instagram.com/sunset_hiratsuka/" target="_blank" rel="noreferrer">最新情報をInstagramで見る<svg class="icon"><use href="#i-out"/></svg></a>';
+    backdrop.classList.add('open');
+  }));
   const close=()=>backdrop.classList.remove('open');document.getElementById('close').addEventListener('click',close);backdrop.addEventListener('click',e=>{if(e.target===backdrop)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 </script>
 </body>
